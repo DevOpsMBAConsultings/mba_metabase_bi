@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista Lista de Tableros -->
+    <record id="view_metabase_dashboard_tree" model="ir.ui.view">
+        <field name="name">metabase.dashboard.tree</field>
+        <field name="model">metabase.dashboard</field>
+        <field name="arch" type="xml">
+            <list string="Tableros Metabase">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="metabase_dashboard_id"/>
+                <field name="theme"/>
+                <field name="active" widget="boolean_toggle"/>
+                <button name="action_open_dashboard" type="object" string="Abrir Tablero" icon="fa-external-link" class="btn-primary"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Vista Formulario de Tableros -->
+    <record id="view_metabase_dashboard_form" model="ir.ui.view">
+        <field name="name">metabase.dashboard.form</field>
+        <field name="model">metabase.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="Tablero Metabase">
+                <header>
+                    <button name="action_open_dashboard" type="object" string="Ver Tablero en Odoo" class="btn-primary" icon="fa-desktop"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Nombre del Tablero"/>
+                        <h1>
+                            <field name="name" placeholder="Ej. Performance &amp; Forecast Ejecutivo"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Conexión con Metabase">
+                            <field name="metabase_dashboard_id"/>
+                            <field name="sequence"/>
+                            <field name="active" widget="boolean_toggle"/>
+                        </group>
+                        <group string="Opciones de Visualización">
+                            <field name="theme"/>
+                            <field name="bordered"/>
+                            <field name="titled"/>
+                        </group>
+                    </group>
+                    <group string="Descripción / Notas de Negocio">
+                        <field name="description" nolabel="1" placeholder="Explica brevemente qué KPIs o área de negocio cubre este tablero..."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción de Cliente Owl (Carga el visualizador de Iframe) -->
+    <record id="action_metabase_dashboard_client" model="ir.actions.client">
+        <field name="name">Tableros BI</field>
+        <field name="tag">metabase_dashboard_client_action</field>
+        <field name="target">current</field>
+    </record>
+
+    <!-- Acción Ventana para gestión de modelos de tableros -->
+    <record id="action_metabase_dashboard_mgmt" model="ir.actions.act_window">
+        <field name="name">Gestión de Tableros</field>
+        <field name="res_model">metabase.dashboard</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                ¡Registra tu primer Tablero de Metabase!
+            </p>
+            <p>
+                Crea un Dashboard en Metabase, habilita su opción de Incrustar (Embedding) y registra aquí el ID numérico del tablero para verlo integrado en Odoo.
+            </p>
+        </field>
+    </record>
+
+    <!-- MENÚS PRINCIPALES (LIMPIOS Y AGNOSTICOS) -->
+    <menuitem id="menu_metabase_bi_root"
+              name="Metabase BI"
+              sequence="15"
+              web_icon="mba_metabase_bi,static/description/icon.png"/>
+
+    <menuitem id="menu_metabase_dashboard_view"
+              name="Tableros"
+              parent="menu_metabase_bi_root"
+              action="action_metabase_dashboard_client"
+              sequence="10"/>
+
+    <menuitem id="menu_metabase_config_parent"
+              name="Configuración"
+              parent="menu_metabase_bi_root"
+              groups="base.group_system"
+              sequence="90"/>
+
+    <menuitem id="menu_metabase_dashboard_mgmt"
+              name="Gestión de Tableros"
+              parent="menu_metabase_config_parent"
+              action="action_metabase_dashboard_mgmt"
+              sequence="10"/>
+
+    <menuitem id="menu_metabase_settings"
+              name="Ajustes de Conexión"
+              parent="menu_metabase_config_parent"
+              action="action_metabase_configuration"
+              sequence="20"/>
+</odoo>

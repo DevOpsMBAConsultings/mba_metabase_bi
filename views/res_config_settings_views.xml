@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vistas de Ajustes Generales -->
+    <record id="res_config_settings_view_form_metabase" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.metabase</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="90"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Metabase BI" string="Metabase BI" name="mba_metabase_bi">
+                    <block title="Conexión con Servidor Metabase" name="metabase_connection_setting">
+                        <setting id="metabase_url_setting" string="Servidor Metabase" help="URL base del servidor Metabase (ej. http://localhost:3000 o https://bi.empresa.com)">
+                            <field name="metabase_url" placeholder="http://localhost:3000"/>
+                        </setting>
+                        <setting id="metabase_secret_key_setting" string="Clave Secreta de Embedding (JWT)" help="Clave generada en Metabase: Ajustes > Configuración > Embedding">
+                            <field name="metabase_secret_key" password="True" placeholder="Clave secreta hexadecimal..."/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Acción para abrir ajustes de Metabase directamente -->
+    <record id="action_metabase_configuration" model="ir.actions.act_window">
+        <field name="name">Ajustes de Metabase BI</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'mba_metabase_bi'}</field>
+    </record>
+</odoo>
