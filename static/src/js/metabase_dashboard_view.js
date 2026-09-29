@@ -73,10 +73,16 @@ export class MetabaseDashboardView extends Component {
         }
     }
 
-    onRefresh() {
-        const iframe = document.getElementById("metabase_bi_iframe");
-        if (iframe && this.state.embedUrl) {
-            iframe.src = this.state.embedUrl;
+    async onRefresh() {
+        // Solicitar token renovado y forzar recarga fresca del dashboard
+        if (this.state.currentDashboardId) {
+            await this.loadDashboardData(this.state.currentDashboardId);
+            const iframe = document.getElementById("metabase_bi_iframe");
+            if (iframe && this.state.embedUrl) {
+                // Agregar timestamp único para romper caché de iframe/navegador
+                const separator = this.state.embedUrl.includes("?") ? "&" : "?";
+                iframe.src = `${this.state.embedUrl}${separator}_t=${Date.now()}`;
+            }
         }
     }
 
