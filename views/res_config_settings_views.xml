@@ -25,10 +25,9 @@
     <!-- Acción para abrir ajustes de Metabase directamente -->
     <record id="action_metabase_configuration" model="ir.actions.act_window">
         <field name="name">Ajustes de Metabase BI</field>
-        <field name="type">ir.actions.act_window</field>
         <field name="res_model">res.config.settings</field>
         <field name="view_mode">form</field>
-        <field name="target">inline</field>
+        <field name="target">current</field>
         <field name="context">{'module': 'mba_metabase_bi'}</field>
     </record>
 </odoo>
