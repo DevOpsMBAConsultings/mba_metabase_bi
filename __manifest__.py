@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'MBA - Centro de Inteligencia de Negocios Metabase BI',
-    'version': '19.0.1.0.0',
-    'summary': 'Visualización ejecutiva de Dashboards Metabase interactivos mediante Signed JWT en Odoo',
+    'name': 'MBA - Centro de Inteligencia de Negocios Metabase BI (MBA Consultings)',
+    'version': '20.0.1.0.0',
+    'summary': 'Visualización ejecutiva de Dashboards Metabase interactivos mediante Signed JWT en Odoo | MBA Consultings',
     'category': 'Productivity/Analytics',
-    'author': 'MBA Consultings, Brooks González',
+    'author': 'MBA Consultings, Brooks Gonzalez',
     'website': 'https://mbaconsultings.com',
     'license': 'LGPL-3',
     'depends': [
@@ -12,7 +12,7 @@
         'web',
     ],
     'data': [
-        'security/ir.model.access.csv',
+        'security/ir.access.csv',
         'views/res_config_settings_views.xml',
         'views/metabase_dashboard_views.xml',
     ],

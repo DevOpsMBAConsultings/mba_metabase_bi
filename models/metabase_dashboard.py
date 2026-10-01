@@ -55,8 +55,8 @@ class MetabaseDashboard(models.Model):
         """Método RPC invocado por el cliente web Owl para obtener la URL firmada lista."""
         self.ensure_one()
         IrConfig = self.env['ir.config_parameter'].sudo()
-        metabase_url = IrConfig.get_param('mba_metabase_bi.metabase_url', 'http://localhost:3000').rstrip('/')
-        secret_key = IrConfig.get_param('mba_metabase_bi.metabase_secret_key', '').strip()
+        metabase_url = IrConfig.get_str('mba_metabase_bi.metabase_url', 'http://localhost:3000').rstrip('/')
+        secret_key = IrConfig.get_str('mba_metabase_bi.metabase_secret_key', '').strip()
 
         if not secret_key:
             raise UserError(_("No se ha configurado la clave secreta de Embedding en Ajustes > Metabase BI."))

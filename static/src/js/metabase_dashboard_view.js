@@ -1,16 +1,19 @@
 /** @odoo-module **/
 
-import { Component, onWillStart, useState } from "@odoo/owl";
+import { Component, onWillStart, proxy, t, useProps } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 
 export class MetabaseDashboardView extends Component {
     static template = "mba_metabase_bi.MetabaseDashboardView";
+    props = useProps({
+        action: t.any().optional(),
+    });
 
     setup() {
         this.orm = useService("orm");
         this.notification = useService("notification");
-        this.state = useState({
+        this.state = proxy({
             loading: true,
             embedUrl: "",
             dashboardName: "",

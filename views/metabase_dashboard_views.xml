@@ -11,7 +11,7 @@
                 <field name="metabase_dashboard_id"/>
                 <field name="theme"/>
                 <field name="active" widget="boolean_toggle"/>
-                <button name="action_open_dashboard" type="object" string="Abrir Tablero" icon="fa-external-link" class="btn-primary"/>
+                <button name="action_open_dashboard" type="object" string="Abrir Tablero" icon="open_in_new" class="btn-primary"/>
             </list>
         </field>
     </record>
@@ -23,7 +23,7 @@
         <field name="arch" type="xml">
             <form string="Tablero Metabase">
                 <header>
-                    <button name="action_open_dashboard" type="object" string="Ver Tablero en Odoo" class="btn-primary" icon="fa-desktop"/>
+                    <button name="action_open_dashboard" type="object" string="Ver Tablero en Odoo" class="btn-primary" icon="desktop_windows"/>
                 </header>
                 <sheet>
                     <div class="oe_title">

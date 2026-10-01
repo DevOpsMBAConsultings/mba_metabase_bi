@@ -6,16 +6,16 @@
             <div class="d-flex align-items-center justify-content-between px-3 py-2 border-bottom bg-white shadow-sm" style="min-height: 48px;">
                 <div class="d-flex align-items-center gap-3">
                     <span class="fs-5 fw-bold text-primary">
-                        <i class="fa fa-line-chart me-2"/> <t t-esc="state.dashboardName || 'Metabase BI'"/>
+                        <i class="oi me-2" data-icon="show_chart"/> <t t-out="this.state.dashboardName || 'Metabase BI'"/>
                     </span>
 
                     <!-- Selector Rápido de Tableros -->
-                    <div t-if="state.dashboardsList.length > 1" class="d-flex align-items-center ms-3">
+                    <div t-if="this.state.dashboardsList.length > 1" class="d-flex align-items-center ms-3">
                         <label class="form-label mb-0 me-2 text-muted small fw-semibold">Cambiar Tablero:</label>
-                        <select class="form-select form-select-sm" style="width: auto; min-width: 230px;" t-on-change="onChangeDashboard">
-                            <t t-foreach="state.dashboardsList" t-as="dash" t-key="dash.id">
-                                <option t-att-value="dash.id" t-att-selected="dash.id === state.currentDashboardId">
-                                    <t t-esc="dash.name"/>
+                        <select class="form-select form-select-sm" style="width: auto; min-width: 230px;" t-on-change="this.onChangeDashboard">
+                            <t t-foreach="this.state.dashboardsList" t-as="dash" t-key="dash.id">
+                                <option t-att-value="dash.id" t-att-selected="dash.id === this.state.currentDashboardId">
+                                    <t t-out="dash.name"/>
                                 </option>
                             </t>
                         </select>
@@ -23,41 +23,41 @@
                 </div>
 
                 <div class="d-flex align-items-center gap-2">
-                    <button class="btn btn-sm btn-outline-secondary" t-on-click="onRefresh" title="Actualizar Datos">
-                        <i class="fa fa-refresh me-1"/> Refrescar
+                    <button class="btn btn-sm btn-outline-secondary" t-on-click="this.onRefresh" title="Actualizar Datos">
+                        <i class="oi me-1" data-icon="refresh"/> Refrescar
                     </button>
-                    <button class="btn btn-sm btn-outline-primary" t-on-click="onOpenFullscreen" title="Ver en Pantalla Completa (Modo TV)">
-                        <i class="fa fa-arrows-alt me-1"/> Pantalla Completa
+                    <button class="btn btn-sm btn-outline-primary" t-on-click="this.onOpenFullscreen" title="Ver en Pantalla Completa (Modo TV)">
+                        <i class="oi me-1" data-icon="fullscreen"/> Pantalla Completa
                     </button>
                 </div>
             </div>
 
             <!-- Contenedor del Iframe -->
             <div class="flex-grow-1 position-relative w-100 h-100 overflow-hidden bg-light">
-                <div t-if="state.loading" class="position-absolute top-50 start-50 translate-middle text-center">
+                <div t-if="this.state.loading" class="position-absolute top-50 start-50 translate-middle text-center">
                     <div class="spinner-border text-primary mb-2" role="status">
                         <span class="visually-hidden">Cargando...</span>
                     </div>
                     <div class="text-muted fw-semibold">Generando credenciales y conectando con Metabase...</div>
                 </div>
 
-                <iframe t-if="state.embedUrl"
+                <iframe t-if="this.state.embedUrl"
                         id="metabase_bi_iframe"
-                        t-att-src="state.embedUrl"
+                        t-att-src="this.state.embedUrl"
                         class="w-100 h-100 border-0"
                         allowfullscreen="true">
                 </iframe>
 
-                <div t-if="!state.loading &amp;&amp; !state.embedUrl" class="position-absolute top-50 start-50 translate-middle text-center p-4">
+                <div t-if="!this.state.loading &amp;&amp; !this.state.embedUrl" class="position-absolute top-50 start-50 translate-middle text-center p-4">
                     <div class="mb-3">
-                        <i class="fa fa-line-chart text-primary opacity-50" style="font-size: 4rem;"/>
+                        <i class="oi text-primary opacity-50" data-icon="show_chart" style="font-size: 4rem;"/>
                     </div>
                     <h3 class="fw-bold">No hay tableros registrados aún</h3>
                     <p class="text-muted" style="max-width: 480px; margin: 0 auto 1.5rem auto;">
                         Crea tu primer Dashboard en Metabase, habilita el Embedding y regístralo en la configuración de Odoo para comenzar a visualizar métricas.
                     </p>
                     <a href="/odoo/action-mba_metabase_bi.action_metabase_dashboard_mgmt" class="btn btn-primary">
-                        <i class="fa fa-plus me-1"/> Registrar un Tablero
+                        <i class="oi me-1" data-icon="add"/> Registrar un Tablero
                     </a>
                 </div>
             </div>
