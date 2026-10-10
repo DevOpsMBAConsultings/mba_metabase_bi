@@ -8,7 +8,7 @@
         <field name="domain_force">
             ['|', '|',
                 ('user_ids', '=', user.id),
-                ('group_ids', 'in', user.groups_id.ids),
+                ('group_ids', 'in', (user.group_ids.ids if hasattr(user, 'group_ids') else user.groups_id.ids)),
                 ('&amp;', ('user_ids', '=', False), ('group_ids', '=', False))
             ]
         </field>
