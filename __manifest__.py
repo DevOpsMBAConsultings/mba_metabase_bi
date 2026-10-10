@@ -13,6 +13,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/ir_rule.xml',
         'views/res_config_settings_views.xml',
         'views/metabase_dashboard_views.xml',
     ],

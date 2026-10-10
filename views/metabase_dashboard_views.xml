@@ -44,6 +44,10 @@
                             <field name="titled"/>
                         </group>
                     </group>
+                    <group string="Control de Acceso / Visibilidad">
+                        <field name="user_ids" widget="many2many_tags_avatar" placeholder="Visible para todos si se deja vacío..."/>
+                        <field name="group_ids" widget="many2many_tags" placeholder="Visible para todos si se deja vacío..."/>
+                    </group>
                     <group string="Descripción / Notas de Negocio">
                         <field name="description" nolabel="1" placeholder="Explica brevemente qué KPIs o área de negocio cubre este tablero..."/>
                     </group>

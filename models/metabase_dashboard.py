@@ -29,6 +29,23 @@ class MetabaseDashboard(models.Model):
     bordered = fields.Boolean(string="Mostrar Bordes", default=False)
     titled = fields.Boolean(string="Mostrar Título de Metabase", default=False)
 
+    user_ids = fields.Many2many(
+        'res.users',
+        'metabase_dashboard_user_rel',
+        'dashboard_id',
+        'user_id',
+        string="Usuarios Autorizados",
+        help="Usuarios con permiso para ver este tablero. Si se deja vacío junto con los Grupos, el tablero será visible para todos los usuarios internos."
+    )
+    group_ids = fields.Many2many(
+        'res.groups',
+        'metabase_dashboard_group_rel',
+        'dashboard_id',
+        'group_id',
+        string="Grupos de Seguridad Autorizados",
+        help="Grupos de Odoo cuyos miembros podrán ver este tablero."
+    )
+
     @api.model
     def _generate_jwt_token(self, dashboard_id, secret_key, exp_minutes=15):
         """Genera un token JWT HMAC-SHA256 usando solo la librería estándar de Python."""
