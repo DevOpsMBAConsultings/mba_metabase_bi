@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Regla de visibilidad para usuarios generales -->
+    <!-- Regla de visibilidad para usuarios generales (Odoo 18) -->
     <record id="rule_metabase_dashboard_user_visibility" model="ir.rule">
         <field name="name">Metabase Dashboard: Visibilidad de Tableros</field>
         <field name="model_id" ref="model_metabase_dashboard"/>
@@ -8,7 +8,7 @@
         <field name="domain_force">
             ['|', '|',
                 ('user_ids', '=', user.id),
-                ('group_ids', 'in', (user.group_ids.ids if hasattr(user, 'group_ids') else user.groups_id.ids)),
+                ('group_ids', 'in', user.groups_id.ids),
                 ('&amp;', ('user_ids', '=', False), ('group_ids', '=', False))
             ]
         </field>
