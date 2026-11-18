@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'MBA - Centro de Inteligencia de Negocios Metabase BI',
-    'version': '18.0.1.0.0',
+    'name': 'MBA - Centro de Inteligencia de Negocios Metabase BI (MBA Consultings)',
+    'version': '18.0.1.0.1',
     'summary': 'Visualización ejecutiva de Dashboards Metabase interactivos mediante Signed JWT en Odoo',
     'category': 'Productivity/Analytics',
     'author': 'MBA Consultings, Brooks González',
